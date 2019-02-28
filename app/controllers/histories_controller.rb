@@ -78,7 +78,7 @@ class HistoriesController < ApplicationController
         @cuid = helpers.current_user
         @histories = @cuid.histories
       else
-        @histories = []
+        @histories = History.all
       end
     end
 end
