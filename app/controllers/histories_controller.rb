@@ -2,6 +2,7 @@ class HistoriesController < ApplicationController
   before_action :set_history, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index]
   before_action :current_user_id, only: [:index]
+
   # GET /histories
   # GET /histories.json
   def index
@@ -80,5 +81,10 @@ class HistoriesController < ApplicationController
       else
         @histories = History.all
       end
+
+      if user_signed_in? && helpers.current_user.admin
+          @histories = History.all
+      end
     end
+
 end
